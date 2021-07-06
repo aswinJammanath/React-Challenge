@@ -1,21 +1,43 @@
 import './css/App.css'
-import Header from './components/Header'
+import {useState} from 'react'
+import Counter from './Counter'
+import Employer from './Employer'
 
 function App() {
-  const data = 'Aswin Jagadeesh A'
+  const [count, setCount] = useState(0) //Destructuring; since the return of the fn is an array of two elements
+  //let count = 0
+  const addCount = ()=>{
+    // count = count +1
+    setCount(count +1)
+  };
+  let obj = {   //for spread operator, we ca see it below like {...obj}, combining the following variables into one
+    title: '1st Counter',
+    count
+  }
+  let emp=[
+    {
+      name:'AJ',age:27
+    },
+    {
+      name:'RVN',age:32
+    }
+  ]
   return (
     <div>
-      <Header data = {data}/>
-      <h1 className='welcome'>Welcome</h1>
-      <Hello/>
+          {/* Never use addCount() */}
+      <button onClick = {addCount}>Click Me</button>
+      {/* <h1 className='count'>Counter: {count}</h1> */}
+      {/* <Counter title='1st Counter' count={count}/> */}
+      <Counter {...obj}/>
+      {
+        emp.map((object)=>{
+          return(
+            <Employer name={object.name} age={object.age} />
+          )
+        })
+      }
     </div>
   );
 }
 
 export default App;
-
-function Hello(){
-  return(
-    <h1 className='hello'>Hello Guys</h1>
-  )
-}
