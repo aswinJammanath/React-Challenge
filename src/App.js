@@ -30,9 +30,9 @@ function App() {
       {/* <Counter title='1st Counter' count={count}/> */}
       <Counter {...obj}/>
       {
-        emp.map((object)=>{
+        emp.map((object,index)=>{
           return(
-            <Employer name={object.name} age={object.age} />
+            <Employer key={index} name={object.name} age={object.age} />
           )
         })
       }
