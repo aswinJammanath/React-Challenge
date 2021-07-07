@@ -5,6 +5,7 @@ import Employer from './Employer'
 
 function App() {
   const [count, setCount] = useState(0) //Destructuring; since the return of the fn is an array of two elements
+  const [state, setState] = useState(false)
   //let count = 0
   const addCount = () => {
     // count = count +1
@@ -25,14 +26,16 @@ function App() {
   return (
     <div>
       {/* Never use addCount() */}
-      <button onClick={addCount}>Click Me</button>
+      <button onClick={()=>{setState(!state)}}>Click Me</button>
       {/* <h1 className='count'>Counter: {count}</h1> */}
       {/* <Counter title='1st Counter' count={count}/> */}
-      <Counter {...obj} />
+      {/* {state ? <Counter {...obj} /> : null} */}
+      {state && <Counter {...obj} /> }
       {
         emp.map((object, index) =>
-          <Employer key={index} {...object} />
+         <Employer key={index} {...object} />
         )
+
       }
     </div>
   );
